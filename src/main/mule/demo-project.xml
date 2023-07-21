@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:module-error-handler-plugin="http://www.mulesoft.org/schema/mule/module-error-handler-plugin" xmlns:db="http://www.mulesoft.org/schema/mule/db"
+	xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core"
+	xmlns:json-logger="http://www.mulesoft.org/schema/mule/json-logger" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/json-logger http://www.mulesoft.org/schema/mule/json-logger/current/mule-json-logger.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd
+http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd
+http://www.mulesoft.org/schema/mule/module-error-handler-plugin http://www.mulesoft.org/schema/mule/module-error-handler-plugin/current/mule-module-error-handler-plugin.xsd">
+	<http:request-config name="HTTP_Request_configuration" doc:name="HTTP Request configuration" doc:id="14d9ebd9-6bf2-4ff8-bff5-5a389f45ac32" />
+	<flow name="demo-projectFlow" doc:id="dd96073d-3794-44bc-997d-71ba80d09c5b" >
+		<http:listener doc:name="Listener" doc:id="c223dfbc-865f-42fc-a7a3-98c9cdf9ef3d" config-ref="HTTP_Listener_config" path="/demo-project">
+			<http:error-response statusCode="#[vars.httpStatus]" >
+				<http:body ><![CDATA[#[payload]]]></http:body>
+			</http:error-response>
+		</http:listener>
+		<json-logger:logger doc:name="Logger" doc:id="10e8c992-c750-45a0-b60f-adabff240447" config-ref="JSON_Logger_Config" message="Start flow- demo project"/>
+		<ee:transform doc:name="Transform Message" doc:id="2f096263-a7d3-43c8-9598-a1736ebdf3af" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	"age" : "34",
+	"employees" : [
+		{
+		"name" : "test",
+		"age": "23"
+		}
+	]
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<json-logger:logger doc:name="Logger" doc:id="846ef193-95fb-41aa-a113-e40162d921cf" config-ref="JSON_Logger_Config" message="After transform- demo project" tracePoint="AFTER_TRANSFORM"/>
+		<error-handler >
+			<on-error-propagate enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="1ac3c3d4-282a-421f-a53e-eec108c05a30" >
+				<module-error-handler-plugin:process-error doc:name="Process Error" doc:id="33cba2ad-5225-4afd-95b0-0e849d09b29c" />
+			</on-error-propagate>
+		</error-handler>
+	</flow>
+</mule>

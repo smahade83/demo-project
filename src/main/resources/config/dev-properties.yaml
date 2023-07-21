@@ -1,0 +1,9 @@
+http:
+  port: "8081"
+  private.port: "8091"
+
+jsonlogger:
+  prettyPrint: 'true'
+  locationInfo: 'true'
+  parseContentFields: 'true'
+  disabledFields: ''

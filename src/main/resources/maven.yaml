@@ -1,0 +1,4 @@
+maven:
+  artifactId: "demo-project"
+  version: "1.0.0-SNAPSHOT"
+  buildDt: "10/13/2022"
