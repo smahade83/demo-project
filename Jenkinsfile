@@ -32,7 +32,7 @@ pipeline {
         APP_NAME = 'demo-project'
       }
       steps {
-            sh 'mvn -DskipTests deploy'
+            sh 'mvn clean deploy -DskipTests'
       }
     }
     }
