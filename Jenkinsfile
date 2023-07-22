@@ -7,7 +7,7 @@ pipeline {
     MULE_VERSION = '4.4.0'
     BG = "bd15e991-e67b-4eb9-9f41-7682ab63b4eb"
     WORKER = "Micro"
-    M2SETTINGS = ""/Users/smahadevan/.m2""
+    M2SETTINGS = "/Users/smahadevan/.m2"
   }
   stages {
     stage('Build') {
