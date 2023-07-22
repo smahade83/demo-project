@@ -12,7 +12,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-            sh 'mvn -B -U -e -V clean -gs %M2SETTINGS% -DskipTests package'
+            sh 'mvn clean -DskipTests package'
       }
     }
 
