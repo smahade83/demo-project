@@ -131,6 +131,11 @@
 				<enabled>false</enabled>
 			</snapshots>
 		</pluginRepository>
+		<pluginRepository>
+			<id>releases-ee</id>
+			<name>Mule Release Repository</name>
+			<url>https://repository.mulesoft.org/nexus/content/repositories/releases-ee/</url>
+		</pluginRepository>
 	</pluginRepositories>
 
 </project>
