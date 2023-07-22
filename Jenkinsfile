@@ -1,6 +1,9 @@
 pipeline {
 
   agent any
+  tools {
+    maven 'Maven 3.8.7'
+  }
   environment {
     //adding a comment for the commit test
     DEPLOY_CREDS = credentials('deploy-anypoint-user')
