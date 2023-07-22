@@ -32,7 +32,7 @@ pipeline {
         APP_NAME = 'demo-project'
       }
       steps {
-            sh 'mvn -DskipTests deploy -DmuleDeploy -Dmule.version="4.4.0" -Danypoint.username="smahadevan_mulesoft" -Danypoint.password="Acumen123" -Dcloudhub.app="demo-project"'
+            sh 'mvn -DskipTests deploy'
       }
     }
     }
