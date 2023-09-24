@@ -29,10 +29,7 @@ pipeline {
 
   
   stages {
-    stage('Build') {
-      input {
-      	message "Build"
-      }
+    stage('Build') 
       steps {
         sh 'mvn clean -DskipTests package'
       }
