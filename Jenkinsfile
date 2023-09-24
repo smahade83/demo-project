@@ -26,6 +26,7 @@ pipeline {
     WORKER = "Micro"
     M2SETTINGS = "/Users/smahadevan/.m2"
   }
+  stages {
   stage('Build') { 
    	   input {
       	message "Build"
@@ -63,3 +64,4 @@ pipeline {
       }
     }
     }
+}
