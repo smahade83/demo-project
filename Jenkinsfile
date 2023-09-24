@@ -35,7 +35,6 @@ pipeline {
       }
       steps {
         sh 'echo ${BRANCH_NAME}'
-        checkout poll: false, scm: [$class: 'GitSCM', branches: [[name: "*/${BRANCH_NAME}"]], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'svc.gitlab', url: "${SCM_URL}"]]]
         sh 'mvn clean -DskipTests package'
       }
     }
