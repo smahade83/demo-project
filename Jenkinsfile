@@ -34,7 +34,6 @@ pipeline {
       	message "Build"
       }
       steps {
-        sh 'echo ${BRANCH_NAME}'
         sh 'mvn clean -DskipTests package'
       }
     }
