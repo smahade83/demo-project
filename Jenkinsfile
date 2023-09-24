@@ -27,14 +27,13 @@ pipeline {
     M2SETTINGS = "/Users/smahadevan/.m2"
   }
 
-  
-  stages {
-    stage('Build') 
+ stages {
+    stage('Build') {
       steps {
-        sh 'mvn clean -DskipTests package'
+            sh 'mvn clean -DskipTests package'
       }
     }
-    
+
     stage('Test') {
       steps {
           sh "mvn test"
@@ -51,3 +50,5 @@ pipeline {
       }
     }
     }
+  } 
+ 
