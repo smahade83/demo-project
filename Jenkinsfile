@@ -25,14 +25,15 @@ pipeline {
     BG = "bd15e991-e67b-4eb9-9f41-7682ab63b4eb"
     WORKER = "Micro"
     M2SETTINGS = "/Users/smahadevan/.m2"
-    sh 'echo Quality Scan using Mule4 Plugin for SonarQube'
-    sh 'echo ${SCM_URL}'
+    
   }
 
  stages {
     stage('Build') {
       steps {
-            sh 'mvn clean -DskipTests package'
+        sh 'echo Quality Scan using Mule4 Plugin for SonarQube'
+        sh 'echo ${SCM_URL}'
+        sh 'mvn clean -DskipTests package'
       }
     }
 
