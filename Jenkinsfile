@@ -7,10 +7,6 @@ pipeline {
   }
   
   environment {
-    APP_NAME = readMavenPom().getArtifactId()
-    ARTIFACT_ID = readMavenPom().getArtifactId()
-    GROUP_ID = readMavenPom().getGroupId()
-    VERSION = readMavenPom().getVersion()
     
     //adding a comment for the commit test
     DEPLOY_CREDS = credentials('deploy-anypoint-user')
