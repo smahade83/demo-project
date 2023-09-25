@@ -8,9 +8,9 @@ pipeline {
   
   environment {
     APP_NAME = readMavenPom().getArtifactId()
-    //ARTIFACT_ID = readMavenPom().getArtifactId()
-    //GROUP_ID = readMavenPom().getGroupId()
-    //VERSION = readMavenPom().getVersion()
+    ARTIFACT_ID = readMavenPom().getArtifactId()
+    GROUP_ID = readMavenPom().getGroupId()
+    VERSION = readMavenPom().getVersion()
     //adding a comment for the commit test
     SCM_URL = scm.getUserRemoteConfigs()[0].getUrl()
     BRANCH = "${GIT_BRANCH.split("/")[1]}"
@@ -57,7 +57,7 @@ pipeline {
         sh 'echo ${SCM_URL}'
         sh 'echo ${VERSION}'
         sh 'echo ${BRANCH_NAME}'
-        sh 'mvn mule:deploy -Dmule.artifact="${ARCHIVE_LOCATION}/workspace/demo-project/target/demo-project-1.0.0-SNAPSHOT-mule-application.jar" -DconnectedAppClientId=afdce4d6c4264c6d9edc93e400587f26 -DconnectedAppClientSecret=A40834Cf23b645408c6EEb9AcAD44497 -DapplicationName=demo-project -Denvironment=Sandbox -Dtarget=dev-test -DbusinessGroupId=bd15e991-e67b-4eb9-9f41-7682ab63b4eb -DmuleDeploy -DskipTests'
+        sh 'mvn mule:deploy -Dmule.artifact="${ARCHIVE_LOCATION}/workspace/demo-project/target/demo-project-1.0.0-SNAPSHOT-mule-application.jar" -DconnectedAppClientId=$connectedAppClientId -DconnectedAppClientSecret=$connectedAppClientSecret -DapplicationName=${APP_NAME} -Denvironment=Sandbox -Dtarget=dev-test -DbusinessGroupId=${GROUP_ID} -DmuleDeploy -DskipTests'
       }
     }
   }
