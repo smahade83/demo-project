@@ -50,6 +50,15 @@ pipeline {
           }
         }
       }
-    }     
+    }
+    
+    stage('Deploy to DEV') {
+      steps {
+        sh 'echo ${SCM_URL}'
+        sh 'echo ${VERSION}'
+        sh 'echo ${BRANCH_NAME}'
+        sh 'mvn mule:deploy -Dmule.artifact=./demo-project-1.0.0-SNAPSHOT-mule-application.jar -DconnectedAppClientId=afdce4d6c4264c6d9edc93e400587f26 -DconnectedAppClientSecret=A40834Cf23b645408c6EEb9AcAD44497 -DapplicationName=demo-project -Denvironment=Sandbox -Dtarget=dev-test -DbusinessGroupId=bd15e991-e67b-4eb9-9f41-7682ab63b4eb -DmuleDeploy -DskipTests'
+      }
+    }
   }
 }
