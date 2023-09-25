@@ -33,7 +33,8 @@ pipeline {
       
       steps {
         catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE'){
-            sh 'mvn clean -DskipTests package'
+          sh 'echo ${BRANCH_NAME}'
+          sh 'mvn clean -DskipTests package'
         }
       }
     }
