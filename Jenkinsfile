@@ -39,7 +39,14 @@ pipeline {
         }
       }
     }
-
-     
+    stage('check file') {
+      steps {
+        script {
+          if (fileExists('demo-project-1.0.0-SNAPSHOT-mule-application.jar')) {
+            echo "demo-project-1.0.0-SNAPSHOT-mule-application.jar found!"
+          }
+        }
+      }
+    }     
     }
   }
