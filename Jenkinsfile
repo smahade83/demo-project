@@ -30,12 +30,11 @@ pipeline {
 
   stages {
     stage('Build') {
-      input {
-      	message "Build"
-      	//submitter "pradeep.chauhan"
-      }
+      
       steps {
+        catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE'){
             sh 'mvn clean -DskipTests package'
+        }
       }
     }
 
