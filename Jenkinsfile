@@ -7,7 +7,7 @@ pipeline {
   }
   
   environment {
-    //APP_NAME = readMavenPom().getArtifactId()
+    APP_NAME = readMavenPom().getArtifactId()
     //ARTIFACT_ID = readMavenPom().getArtifactId()
     //GROUP_ID = readMavenPom().getGroupId()
     //VERSION = readMavenPom().getVersion()
