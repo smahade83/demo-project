@@ -47,7 +47,10 @@ pipeline {
       }
       steps {
         cleanWs()
-        sh 'mvn clean deploy -DmuleDeploy -DskipTests'
+        sh 'echo ${SCM_URL}'
+        sh 'echo ${VERSION}'
+        sh 'echo ${BRANCH_NAME}'
+        //sh 'mvn clean deploy -DmuleDeploy -DskipTests'
       }
     }
     }
