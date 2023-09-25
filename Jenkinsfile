@@ -40,7 +40,7 @@ pipeline {
       }
     }
 
-     stage('Deploy Development') {
+     stage('Deploy to Dev') {
       environment {
         ENVIRONMENT = 'Sandbox'
         APP_NAME = 'demo-project'
