@@ -46,6 +46,7 @@ pipeline {
         APP_NAME = 'demo-project'
       }
       steps {
+        cleanWs()
         sh 'mvn clean deploy -DmuleDeploy -DskipTests'
       }
     }
