@@ -35,12 +35,11 @@ pipeline {
         	//submitter "pradeep.chauhan"
         }
         steps {
-          catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
            sh 'echo ${BRANCH_NAME}'
            sh 'mvn clean -DskipTests package'
 
            //cleanWs()
-          }
+          
         }
       }
   }
