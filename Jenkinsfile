@@ -50,7 +50,8 @@ pipeline {
         sh 'echo ${SCM_URL}'
         sh 'echo ${VERSION}'
         sh 'echo ${BRANCH_NAME}'
-        //sh 'mvn clean deploy -DmuleDeploy -DskipTests'
+        checkout poll: false, scm: [$class: 'GitSCM', branches: [[name: "*/${BRANCH_NAME}"]], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'Github', url: "${SCM_URL}"]]]
+        sh 'mvn clean deploy -DmuleDeploy -DskipTests'
       }
     }
     }
