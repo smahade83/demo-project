@@ -42,11 +42,11 @@ pipeline {
     stage('check file') {
       steps {
         script {
-          if (fileExists("${WORKSPACE}/target/demo-project-1.0.0-SNAPSHOT-mule-application.jar")) {
-            echo "demo-project-1.0.0-SNAPSHOT-mule-application.jar found!"
+          if (fileExists("${WORKSPACE}/target/${APP_NAME}-${VERSION}-mule-application.jar")) {
+            echo "${APP_NAME}-${VERSION}-mule-application.jar found!"
           }else{
-            echo "${WORKSPACE}/target/demo-project-1.0.0-SNAPSHOT-mule-application.jar"
-            echo "demo-project-1.0.0-SNAPSHOT-mule-application.jar not found!"
+            echo "${WORKSPACE}/target/${APP_NAME}-${VERSION}-mule-application.jar"
+            echo "${APP_NAME}-${VERSION}-mule-application.jar not found!"
           }
         }
       }
@@ -57,7 +57,7 @@ pipeline {
         sh 'echo ${SCM_URL}'
         sh 'echo ${VERSION}'
         sh 'echo ${BRANCH_NAME}'
-        sh 'mvn mule:deploy -Dmule.artifact="${WORKSPACE}/target/demo-project-1.0.0-SNAPSHOT-mule-application.jar" -DconnectedAppClientId=$connectedAppClientId -DconnectedAppClientSecret=$connectedAppClientSecret -DapplicationName=${APP_NAME} -Denvironment=Sandbox -Dtarget=dev-test -DbusinessGroupId=${GROUP_ID} -DmuleDeploy -DskipTests'
+        sh 'mvn mule:deploy -Dmule.artifact="${WORKSPACE}/target/${APP_NAME}-${VERSION}-mule-application.jar" -DconnectedAppClientId=$connectedAppClientId -DconnectedAppClientSecret=$connectedAppClientSecret -DapplicationName=${APP_NAME} -Denvironment=Sandbox -Dtarget=dev-test -DbusinessGroupId=${GROUP_ID} -DmuleDeploy -DskipTests'
       }
     }
   }
