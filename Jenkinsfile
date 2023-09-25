@@ -29,19 +29,26 @@ pipeline {
   }
 
   stages {
-    stage('Build') { 
-     	   input {
-        	message "Build"
-        	//submitter "pradeep.chauhan"
-        }
-        steps {
-           sh 'echo ${BRANCH_NAME}'
-           sh 'mvn clean -DskipTests package'
-
-           //cleanWs()
-          
-        }
+    stage('Build') {
+      steps {
+            sh 'mvn clean -DskipTests package'
       }
+    }
+
+    stage('Test') {
+      steps {
+          sh "mvn test"
+      }
+    }
+
+     stage('Deploy Development') {
+      environment {
+        ENVIRONMENT = 'Sandbox'
+        APP_NAME = 'demo-project'
+      }
+      steps {
+            sh 'mvn clean deploy -DmuleDeploy -DskipTests'
+      }
+    }
+    }
   }
-  
- }
