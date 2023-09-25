@@ -40,17 +40,6 @@ pipeline {
       }
     }
 
-     stage('Deploy to Dev') {
-      environment {
-        ENVIRONMENT = 'Sandbox'
-        APP_NAME = 'demo-project'
-      }
-      steps {
-        sh 'echo ${SCM_URL}'
-        sh 'echo ${VERSION}'
-        sh 'echo ${BRANCH_NAME}'
-        sh 'mvn clean deploy -DmuleDeploy -DskipTests'
-      }
-    }
+     
     }
   }
