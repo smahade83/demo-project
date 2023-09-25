@@ -28,30 +28,19 @@ pipeline {
     
   }
 
- stages {
-    stage('Build') {
-      steps {
-        sh 'echo Quality Scan using Mule4 Plugin for SonarQube'
-        sh 'echo ${SCM_URL}'
-        sh 'mvn clean -DskipTests package'
-      }
-    }
-
-    stage('Test') {
-      steps {
-          sh "mvn test"
-      }
-    }
-
-     stage('Deploy Development') {
-      environment {
-        ENVIRONMENT = 'Sandbox'
-        APP_NAME = 'demo-project'
+  stage('Build') { 
+   	   input {
+      	message "Build"
+      	//submitter "pradeep.chauhan"
       }
       steps {
-            sh 'mvn clean deploy -DmuleDeploy -DskipTests'
+        catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+         sh 'echo ${BRANCH_NAME}'
+         checkout poll: false, scm: [$class: 'GitSCM', branches: [[name: "*/${BRANCH_NAME}"]], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'svc.gitlab', url: "${SCM_URL}"]]]
+         sh 'mvn -s $HOME/MuleSoft-settings.xml clean package deploy -DskipTests'
+         //cleanWs()
+        }
       }
     }
-    }
-  } 
- 
+  
+ }
