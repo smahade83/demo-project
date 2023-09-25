@@ -42,10 +42,10 @@ pipeline {
     stage('check file') {
       steps {
         script {
-          if (fileExists('${ARCHIVE_LOCATION}/workspace/demo-project/target/demo-project-1.0.0-SNAPSHOT-mule-application.jar')) {
+          if (fileExists("${ARCHIVE_LOCATION}/workspace/demo-project/target/demo-project-1.0.0-SNAPSHOT-mule-application.jar")) {
             echo "demo-project-1.0.0-SNAPSHOT-mule-application.jar found!"
           }else{
-            echo '${ARCHIVE_LOCATION}/workspace/demo-project/target/demo-project-1.0.0-SNAPSHOT-mule-application.jar'
+            echo "${ARCHIVE_LOCATION}/workspace/demo-project/target/demo-project-1.0.0-SNAPSHOT-mule-application.jar"
             echo "demo-project-1.0.0-SNAPSHOT-mule-application.jar not found!"
           }
         }
