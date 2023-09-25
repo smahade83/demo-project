@@ -46,10 +46,6 @@ pipeline {
         APP_NAME = 'demo-project'
       }
       steps {
-        cleanWs()
-        sh 'echo ${SCM_URL}'
-        sh 'echo ${VERSION}'
-        sh 'echo ${BRANCH_NAME}'
         sh 'mvn clean deploy -DmuleDeploy -DskipTests'
       }
     }
