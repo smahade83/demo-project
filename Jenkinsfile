@@ -40,9 +40,10 @@ pipeline {
       }
     }
 
-    stage ('Deploy to excahnge') {
-      sh "mvn clean deploy -Pexchange -DconnectedAppClientId=$connectedAppClientId -DconnectedAppClientSecret=$connectedAppClientSecret --settings ${M2SETTINGS}"
-
+    stage('Deploy to exchange') {
+      steps {
+          sh "mvn clean deploy -Pexchange -DconnectedAppClientId=$connectedAppClientId -DconnectedAppClientSecret=$connectedAppClientSecret --settings ${M2SETTINGS}"
+      }
     }
     
     stage('Deploy to DEV') {
