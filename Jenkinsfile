@@ -39,17 +39,10 @@ pipeline {
         }
       }
     }
-    stage('check file') {
-      steps {
-        script {
-          if (fileExists("${WORKSPACE}/target/${APP_NAME}-${VERSION}-mule-application.jar")) {
-            echo "${APP_NAME}-${VERSION}-mule-application.jar found!"
-          }else{
-            echo "${WORKSPACE}/target/${APP_NAME}-${VERSION}-mule-application.jar"
-            echo "${APP_NAME}-${VERSION}-mule-application.jar not found!"
-          }
-        }
-      }
+
+    stage ('Deploy to excahnge') {
+      sh "mvn clean deploy -Pexchange -DconnectedAppClientId=$connectedAppClientId -DconnectedAppClientSecret=$connectedAppClientSecret --settings ${M2SETTINGS}"
+
     }
     
     stage('Deploy to DEV') {
