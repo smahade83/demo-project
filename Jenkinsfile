@@ -45,7 +45,12 @@ pipeline {
           sh "mvn clean deploy -Pexchange -DconnectedAppClientId=afdce4d6c4264c6d9edc93e400587f26 -DconnectedAppClientSecret=A40834Cf23b645408c6EEb9AcAD44497"
       }
     }
-    
+
+    stage('Download jar from exchange') {
+      steps {
+          sh "mvn dependency:copy -Dartifact=bd15e991-e67b-4eb9-9f41-7682ab63b4eb:demo-project:1.0.1-SNAPSHOT:jar:mule-application -DoutputDirectory=./ -B -DconnectedAppClientId=afdce4d6c4264c6d9edc93e400587f26 -DconnectedAppClientSecret=A40834Cf23b645408c6EEb9AcAD44497"
+      }
+    }
     stage('Deploy to DEV') {
       steps {
         sh 'echo ${SCM_URL}'
