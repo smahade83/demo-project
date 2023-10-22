@@ -48,7 +48,7 @@ pipeline {
 
     stage('Download jar from exchange') {
       steps {
-          sh "mvn dependency:copy -Dartifact=bd15e991-e67b-4eb9-9f41-7682ab63b4eb:demo-project:1.0.1-SNAPSHOT:jar:mule-application -DoutputDirectory=./ -B -DconnectedAppClientId=afdce4d6c4264c6d9edc93e400587f26 -DconnectedAppClientSecret=A40834Cf23b645408c6EEb9AcAD44497"
+          sh "mvn dependency:copy -Dartifact=bd15e991-e67b-4eb9-9f41-7682ab63b4eb:demo-project:1.0.0-SNAPSHOT:jar:mule-application -DoutputDirectory=./ -B -DconnectedAppClientId=afdce4d6c4264c6d9edc93e400587f26 -DconnectedAppClientSecret=A40834Cf23b645408c6EEb9AcAD44497"
       }
     }
     stage('Deploy to DEV') {
@@ -57,7 +57,7 @@ pipeline {
         sh 'echo ${VERSION}'
         sh 'echo ${BRANCH_NAME}'
         sh 'echo ${WORKSPACE}'
-        sh 'mvn mule:deploy -Dmule.artifact="${WORKSPACE}/target/${APP_NAME}-${VERSION}-mule-application.jar" -DconnectedAppClientId=$connectedAppClientId -DconnectedAppClientSecret=$connectedAppClientSecret -DapplicationName=${APP_NAME} -Denvironment=Sandbox -Dtarget=dev-test -DbusinessGroupId=${GROUP_ID} -DmuleDeploy -DskipTests'      }
+        sh 'mvn mule:deploy -Dmule.artifact="./${APP_NAME}-${VERSION}-mule-application.jar" -DconnectedAppClientId=$connectedAppClientId -DconnectedAppClientSecret=$connectedAppClientSecret -DapplicationName=${APP_NAME} -Denvironment=Sandbox -Dtarget=dev-test -DbusinessGroupId=${GROUP_ID} -DmuleDeploy -DskipTests'      }
     }
   }
 }
