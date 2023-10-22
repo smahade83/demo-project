@@ -52,8 +52,7 @@ pipeline {
         sh 'echo ${VERSION}'
         sh 'echo ${BRANCH_NAME}'
         sh 'echo ${WORKSPACE}'
-        sh 'mvn mule:deploy -Dmule.artifact="${WORKSPACE}/target/${APP_NAME}-${VERSION}-mule-application.jar" -DconnectedAppClientId=$connectedAppClientId -DconnectedAppClientSecret=$connectedAppClientSecret -DapplicationName=${APP_NAME} -Denvironment=Sandbox -Dtarget=dev-test -DbusinessGroupId=${GROUP_ID} -DmuleDeploy -DskipTests'
-      }
+        sh 'mvn mule:deploy -Dmule.artifact="${WORKSPACE}/target/${APP_NAME}-${VERSION}-mule-application.jar" -DconnectedAppClientId=$connectedAppClientId -DconnectedAppClientSecret=$connectedAppClientSecret -DapplicationName=${APP_NAME} -Denvironment=Sandbox -Dtarget=dev-test -DbusinessGroupId=${GROUP_ID} -DmuleDeploy -DskipTests'      }
     }
   }
 }
