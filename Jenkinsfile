@@ -42,6 +42,7 @@ pipeline {
 
     stage('Deploy to exchange') {
       steps {
+          sh 'echo ${exchange}'
           sh "mvn clean deploy -Pexchange -DconnectedAppClientId=afdce4d6c4264c6d9edc93e400587f26 -DconnectedAppClientSecret=A40834Cf23b645408c6EEb9AcAD44497"
       }
     }
