@@ -59,6 +59,7 @@ pipeline {
         sh 'echo ${SCM_URL}'
         sh 'echo ${VERSION}'
         sh 'echo ${BRANCH_NAME}'
+        sh 'echo ${BRANCH}'
         sh 'echo ${WORKSPACE}'
         sh 'mvn mule:deploy -Dmule.artifact="./${APP_NAME}-${VERSION}-mule-application.jar" -DconnectedAppClientId=$connectedAppClientId -DconnectedAppClientSecret=$connectedAppClientSecret -DapplicationName=${APP_NAME} -Denvironment=Sandbox -Dtarget=mulesoft-dev -DbusinessGroupId=${GROUP_ID} -DmuleDeploy -DskipTests'
       }
