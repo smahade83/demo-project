@@ -43,8 +43,9 @@ pipeline {
     stage('Deploy to exchange') {
       steps {
           sh 'echo ${exchange}'
-          if 'echo ${exchange}' == true
+          if(exchange.toBoolean()){
           sh "mvn clean deploy -Pexchange -DconnectedAppClientId=afdce4d6c4264c6d9edc93e400587f26 -DconnectedAppClientSecret=A40834Cf23b645408c6EEb9AcAD44497"
+      }
       }
       else sh 'echo ${exchange}'
     }
@@ -52,8 +53,9 @@ pipeline {
     stage('Download jar from exchange') {
       steps {
           sh 'echo ${exchange}'
-          if 'echo ${exchange}' == true
+          if(exchange.toBoolean()){
           sh "mvn dependency:copy -Dartifact=bd15e991-e67b-4eb9-9f41-7682ab63b4eb:demo-project:1.0.0-SNAPSHOT:jar:mule-application -DoutputDirectory=./ -B -DconnectedAppClientId=afdce4d6c4264c6d9edc93e400587f26 -DconnectedAppClientSecret=A40834Cf23b645408c6EEb9AcAD44497"
+      }
       }
       else sh 'echo ${exchange}'
     }
